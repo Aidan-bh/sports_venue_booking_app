@@ -216,6 +216,22 @@ SportField tennisWing = SportField(
     imageAsset: "assets/images/wing_tennis.jpg",
     price: 80000);
 
+    SportField padel = SportField(
+    id: "011",
+    name: "Padel units limited",
+    address: "Northuberland street no.72",
+    category: _padel,
+    facilities: [_toilet, _changingRoom, _locker, _canteen],
+    author: "Mario Luigi",
+    authorUrl: "https://unsplash.com/@marioluigi",
+    imageUrl: "https://unsplash.com/photos/a-tennis-court-with-a-blue-tennis-court-NtiZoP2CKOs",
+    openDay: "All Day",
+    openTime: "09.00",
+    closeTime: "20.00",
+    imageAsset: "assets/images/wing_tennis.jpg",
+    price: 80000, 
+    phoneNumber: '0899 1414 5555',);
+
 List<SportField> sportFieldList = [
   futsalRionov,
   basketballVio,
@@ -227,6 +243,7 @@ List<SportField> sportFieldList = [
   tennisCoates,
   futsalJaya,
   tennisWing,
+  padel,
 ];
 
 List<SportField> recommendedSportField = [
@@ -234,7 +251,8 @@ List<SportField> recommendedSportField = [
   tennisWing,
   volleyTanjung,
   tableTennisDCortez,
-  futsalRionov
+  futsalRionov,
+  padel
 ];
 
 List<FieldOrder> dummyUserOrderList = [];
