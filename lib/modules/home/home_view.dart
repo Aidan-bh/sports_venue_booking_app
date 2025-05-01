@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spod_app/model/sport_field.dart';
 import 'package:spod_app/modules/search_view.dart';
 import 'package:spod_app/theme.dart';
@@ -7,13 +8,32 @@ import 'package:spod_app/utils/dummy_data.dart';
 import 'package:spod_app/components/category_card.dart';
 import 'package:spod_app/components/sport_field_card.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   List<SportField> fieldList = recommendedSportField;
+  bool _isDarkMode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadThemePreference();
+  }
+
+  _loadThemePreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isDarkMode = prefs.getBool('isDarkMode') ?? false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: _isDarkMode ? darkBlue700 : backgroundColor,
       body: Column(
         children: [
           header(context),
@@ -22,44 +42,42 @@ class HomeView extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 Container(
-                  padding:
-                      const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+                  padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
                   child: Text(
                     "Let's Have Fun and \nBe Healty!",
-                    style: greetingTextStyle,
+                    style: greetingTextStyle.copyWith(
+                      color: _isDarkMode ? Colors.white : Colors.black,
+                    ),
                   ),
                 ),
                 CategoryListView(),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Recommended Venue",
-                        style: subTitleTextStyle,
+                        style: subTitleTextStyle.copyWith(
+                          color: _isDarkMode ? Colors.white : Colors.black,
+                        ),
                       ),
                       TextButton(
-                          onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return SearchView(
-                                selectedDropdownItem: "All",
-                              );
-                            }));
-                          },
-                          child: const Text("Show All"))
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return SearchView(selectedDropdownItem: "All");
+                          }));
+                        },
+                        child: const Text("Show All"),
+                      )
                     ],
                   ),
                 ),
-                // RECOMMENDED FIELDS
                 Column(
-                    children: fieldList
-                        .map((fieldEntity) => SportFieldCard(
-                              field: fieldEntity,
-                            ))
-                        .toList()),
+                  children: fieldList
+                      .map((fieldEntity) => SportFieldCard(field: fieldEntity))
+                      .toList(),
+                ),
               ],
             ),
           )
@@ -72,7 +90,6 @@ class HomeView extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: SafeArea(
-        // SEARCH Icon
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,23 +108,23 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 16,
-                ),
+                const SizedBox(width: 16),
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Welcome back,",
-                      style: descTextStyle,
+                      style: descTextStyle.copyWith(
+                        color: _isDarkMode ? Colors.white70 : Colors.black54,
+                      ),
                     ),
-                    const SizedBox(
-                      height: 4,
-                    ),
+                    const SizedBox(height: 4),
                     Text(
                       sampleUser.name,
-                      style: subTitleTextStyle,
+                      style: subTitleTextStyle.copyWith(
+                        color: _isDarkMode ? Colors.white : Colors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -115,14 +132,13 @@ class HomeView extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: primaryColor500,
-                  borderRadius: BorderRadius.circular(borderRadiusSize)),
+                color: primaryColor500,
+                borderRadius: BorderRadius.circular(borderRadiusSize),
+              ),
               child: IconButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return SearchView(
-                      selectedDropdownItem: "",
-                    );
+                    return SearchView(selectedDropdownItem: "");
                   }));
                 },
                 icon: const Icon(Icons.search, color: colorWhite),

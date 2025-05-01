@@ -69,3 +69,35 @@ MaterialColor createMaterialColor(Color color) {
   }
   return MaterialColor(color.value, swatch);
 }
+
+ThemeData lightTheme = ThemeData(
+  brightness: Brightness.light,
+  scaffoldBackgroundColor: backgroundColor,
+  primarySwatch: createMaterialColor(primaryColor500),
+  textTheme: GoogleFonts.poppinsTextTheme().apply(
+    bodyColor: darkBlue500,
+    displayColor: darkBlue500,
+  ),
+  iconTheme: const IconThemeData(color: darkBlue500),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: colorWhite,
+    foregroundColor: darkBlue500,
+    elevation: 0,
+  ),
+);
+
+ThemeData darkTheme = ThemeData(
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: darkBlue700,
+  primarySwatch: createMaterialColor(primaryColor500),
+  textTheme: GoogleFonts.poppinsTextTheme().apply(
+    bodyColor: Colors.white,
+    displayColor: Colors.white,
+  ),
+  iconTheme: const IconThemeData(color: Colors.white),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: darkBlue500,
+    foregroundColor: Colors.white,
+    elevation: 0,
+  ),
+);
