@@ -1,0 +1,29 @@
+{
+  "name": "sports_venue_booking_app",
+  "version": "1.0.0",
+  "description": "Spod is an android application which allow user to book a sport venue from anywhere at anytime using mobile phone. This project was created using the Flutter Framework.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aidan-bh/sports_venue_booking_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aidan-bh/sports_venue_booking_app/issues"
+  },
+  "homepage": "https://github.com/Aidan-bh/sports_venue_booking_app#readme",
+  "dependencies": {
+    "algosdk": "^3.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
