@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:spod_app/modules/setting/add_payment_card_view.dart';
 import 'package:spod_app/utils/dummy_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../theme.dart';
@@ -88,7 +89,12 @@ class SettingsView extends StatelessWidget {
                   style: subTitleTextStyle.copyWith(color: primaryColor500),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddPaymentCardView(),
+                        ),
+                      );},
                   splashColor: primaryColor100,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
