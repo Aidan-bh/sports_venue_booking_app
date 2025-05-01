@@ -32,12 +32,18 @@ var _tennis = SportCategory(
   image: "assets/icons/tennis.png",
 );
 
+var _padel = SportCategory(
+  name: "Padel",
+  image: "assets/icons/padel.png",
+);
+
 List<SportCategory> sportCategories = [
   _basketball,
   _tennis,
   _volley,
   _futsal,
   _tableTennis,
+  _padel,
 ];
 
 var _wifi = FieldFacility(name: "WiFi", imageAsset: "assets/icons/wifi.png");
